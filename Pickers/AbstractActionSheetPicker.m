@@ -235,8 +235,12 @@ CG_INLINE BOOL isIPhone4() {
 
 #pragma mark - Actions
 
+- (CGFloat)pickerViewHeight {
+    return 260;
+}
+
 - (void)showActionSheetPicker {
-    UIView *masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.viewSize.width, 260)];
+    UIView *masterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.viewSize.width, [self pickerViewHeight])];
 
     // to fix bug, appeared only on iPhone 4 Device: https://github.com/skywinder/ActionSheetPicker-3.0/issues/5
     if (isIPhone4()) {
@@ -264,8 +268,8 @@ CG_INLINE BOOL isIPhone4() {
     // toolbar hidden remove the toolbar frame and update pickerview frame
     if (self.toolbar.hidden) {
         int halfWidth = (int) (_borderWidth * 0.5f);
-        masterView.frame = CGRectMake(0, 0, self.viewSize.width, 220);
-        self.pickerView.frame = CGRectMake(0, halfWidth, self.viewSize.width, 220 - halfWidth);
+        masterView.frame = CGRectMake(0, 0, self.viewSize.width, [self pickerViewHeight] - 40);
+        self.pickerView.frame = CGRectMake(0, halfWidth, self.viewSize.width, [self pickerViewHeight] - 40 - halfWidth);
     }
     [masterView addSubview:_pickerView];
 
